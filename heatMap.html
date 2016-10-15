@@ -982,8 +982,11 @@ BlzDynamicImageLoader(true,true,[128,240,320,480],-1,-1,-1,"onVisible",100,1000,
     <script>
     window.nike.exp.script.device_detect.redirectOnAgentMismatch('false', 'http://m.nike.com/us/en_us/');
     </script>
+
+    <script src="scripts/heatmap.min.js"></script>
+
     <title>Scare Jordan</title>
-    <link rel="shortcut icon" href="favicon.ico"/>
+    <link rel="shortcut icon" href="images/favicon.ico"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="index,follow" />
@@ -2385,7 +2388,7 @@ BlzDynamicImageLoader(true,true,[128,240,320,480],-1,-1,-1,"onVisible",100,1000,
                                                     <div class="nike-cq-fst-component" data-background-color="FFFFFF">
                                                         <div class="nike-cq-background-component" style="background-color:#FFFFFF;"></div>
                                                         <div class="nike-cq-fst-background-image">
-                                                            <div data-component-container="true" class="nike-cq-image"><img src="https://cdn.laxallstars.com/wp-content/uploads/2010/09/CD-Player-Shoe.jpg" class="nike-cq-image-component cq-dd-image nike-cq-touts-full-screen-tout-touts-background-image-resource" alt="P1_1600.jpg" data-nike-campaign="" data-nike-category="" style="width: 40%">
+                                                            <div data-component-container="true" class="nike-cq-image"><div class="heatmap" style="height:400px">
                                                             </div>
                                                         </div>
                                                         <div data-component-container="true" class="nike-cq-container">
@@ -2399,9 +2402,9 @@ BlzDynamicImageLoader(true,true,[128,240,320,480],-1,-1,-1,"onVisible",100,1000,
                                                                     <div class="nike-cq-labels-label-panel">
                                                                         <div class="nike-cq-subtitle">
                                                                             <div class="nike-cq-subtitle-component nike-cq-touts-full-screen-tout-touts-labels-0-resource">
-                                                                                <h2 class="nike-cq-subtitle-headline nike-cq-subtitle-headline-level-2 nike-cq-subtitle-styled-header"><span class="nike-cq-subtitle-line-1 nike-cq-title-line nike-cq-line1 nsg-text--black nike-cq-font50px nike-cq-nospacing nsg-font-family--platform">YOUR PERFECT<br>
+                                                                                <h2 class="nike-cq-subtitle-headline nike-cq-subtitle-headline-level-2 nike-cq-subtitle-styled-header"><span class="nike-cq-subtitle-line-1 nike-cq-title-line nike-cq-line1 nsg-text--black nike-cq-font50px nike-cq-nospacing nsg-font-family--platform">UNDER<br>
           
-          RUNNING PARTNER</span></h2>
+          PRESSURE</span></h2>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -2557,6 +2560,40 @@ BlzDynamicImageLoader(true,true,[128,240,320,480],-1,-1,-1,"onVisible",100,1000,
         "transactionName": "bwFWbEIEXkAHABULX1ZLZl1BEFVAEiIVFkJRBkFMVUoKWwkOBE9AWQNRFVMKXkcUDA0OVUo=",
         "queueTime": 0
     }
+    </script>
+
+    <script type="text/javascript">
+    // minimal heatmap instance configuration
+var heatmapInstance = h337.create({
+  // only container is required, the rest will be defaults
+  container: document.querySelector('.heatmap')
+});
+
+// now generate some random data
+var points = [];
+var max = 0;
+var width = 840;
+var height = 400;
+var len = 200;
+
+while (len--) {
+  var val = Math.floor(Math.random()*100);
+  max = Math.max(max, val);
+  var point = {
+    x: Math.floor(Math.random()*width),
+    y: Math.floor(Math.random()*height),
+    value: val
+  };
+  points.push(point);
+}
+// heatmap data format
+var data = { 
+  max: max, 
+  data: points 
+};
+// if you have a set of datapoints always use setData instead of addData
+// for data initialization
+heatmapInstance.setData(data);
     </script>
 </body>
 

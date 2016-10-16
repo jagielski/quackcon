@@ -2778,7 +2778,7 @@
 
 
     var points = [];
-    var max = 10;
+    var max = 30;
     var width = containerWidth;
     var height = containerHeight;
     var len = 20;
@@ -2794,16 +2794,37 @@
     //    points.push(point);
     //}
 
+    var pressureFront = 5;
+    var pressureBack  = 10;
+
+    function eDistance(pointA, pointB) {
+        return Math.sqrt(Math.pow(pointA.x - pointB.x, 2) + Math.pow(pointA.y - pointB.y, 2));
+    }
+    
+    var frontPoint = {
+        x: 225,
+        y: 130,
+        value: pressureFront
+    };
+
+    var alphaConstant = 4;
+
+    for (var i = 0; i < alphaConstant; i++) {
+        points.push(frontPoint);
+    }
+
     points.push({
-            x: 200,
-            y: 130,
-            value: 5
+            x: frontPoint.x - 10,
+            y: frontPoint.y - 10,
+            value: pressureFront / eDistance(this, pressureFront)
     });
+
     points.push({
             x: 225,
             y: 130,
             value: 5
     });
+
     points.push({
             x: 230,
             y: 150,

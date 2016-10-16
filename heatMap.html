@@ -2587,7 +2587,7 @@
                                                         <div class="nike-cq-fst-background-image">
                                                             <div data-component-container="true" style="left:10%;position:relative; width:60%;" class="nike-cq-image">
                                                                 <div class="heatmap" style="width:70%;">
-                                                                    <img id="insole-overlay" style="left:10%;position:relative; overflow:hidden" src="images/insole.png">
+                                                                    <img id="insole-overlay" style="left:10%;position:relative; overflow:hidden; background-color:black; opacity:0.05;" src="images/insole.png">
                                                                 </div>
                                                             </div>
                                                             <div data-component-container="true" class="nike-cq-container">
@@ -2778,21 +2778,56 @@
 
 
     var points = [];
-    var max = 0;
+    var max = 10;
     var width = containerWidth;
     var height = containerHeight;
-    var len = 200;
+    var len = 20;
 
-    while (len--) {
-        var val = Math.floor(Math.random() * 100);
-        max = Math.max(max, val);
-        var point = {
-            x: Math.floor((Math.random() * width) + containerWidth / 5),
-            y: Math.floor(Math.random() * height),
-            value: val
-        };
-        points.push(point);
-    }
+    //while (len--) {
+    //    var val = Math.floor(Math.random() * 100);
+    //    max = Math.max(max, val);
+    //    var point = {
+    //        x: Math.floor((Math.random() * width) + containerWidth / 5),
+    //        y: Math.floor(Math.random() * height),
+    //        value: val
+    //    };
+    //    points.push(point);
+    //}
+
+    points.push({
+            x: 200,
+            y: 130,
+            value: 5
+    });
+    points.push({
+            x: 225,
+            y: 130,
+            value: 5
+    });
+    points.push({
+            x: 230,
+            y: 150,
+            value: 5
+    });
+    /*
+    points.push({
+            x: 100,
+            y: 200,
+            vale: 30
+    });
+    points.push({
+            x: 100,
+            y: 200,
+            vale: 30
+    });
+    points.push({
+            x: 100,
+            y: 200,
+            vale: 30
+    });
+    */
+
+
     // heatmap data format
     var data = {
         max: max,

@@ -2455,7 +2455,6 @@
                                                                             <a class="nike-cq-labels-label-link" href="http://store.nike.com/us/en_us/pd/zoom-lebron-soldier-10-mens-basketball-shoe/pid-11156287/pgid-11634702">
                                                                                 <div class="nike-cq-subtitle">
                                                                                     <div class="nike-cq-subtitle-component nike-cq-touts-full-screen-tout-touts-labels-1-resource">
-                                                                                        <h2 class="nike-cq-subtitle-headline nike-cq-subtitle-headline-level-2 nike-cq-subtitle-styled-header"><span class="nike-cq-subtitle-line-1 nike-cq-title-line nike-cq-line1 nsg-text--white nike-cq-font15px nike-cq-nospacing nsg-font-family--platform">SHOP NOW</span></h2>
                                                                                     </div>
                                                                                 </div>
                                                                             </a>
@@ -2466,7 +2465,6 @@
                                                                             <a class="nike-cq-labels-label-link" href="https://www.nike.com/us/en_us/c/basketball/lebron-soldier-10">
                                                                                 <div class="nike-cq-subtitle">
                                                                                     <div class="nike-cq-subtitle-component nike-cq-touts-full-screen-tout-touts-labels-2-resource">
-                                                                                        <h2 class="nike-cq-subtitle-headline nike-cq-subtitle-headline-level-2 nike-cq-subtitle-styled-header"><span class="nike-cq-subtitle-line-1 nike-cq-title-line nike-cq-line1 nsg-text--white nike-cq-font15px nike-cq-nospacing nsg-font-family--platform">LEARN MORE</span></h2>
                                                                                     </div>
                                                                                 </div>
                                                                             </a>
@@ -2587,9 +2585,9 @@
                                                     <div class="nike-cq-fst-component" data-background-color="FFFFFF">
                                                         <div class="nike-cq-background-component" style="background-color:#FFFFFF;"></div>
                                                         <div class="nike-cq-fst-background-image">
-                                                            <div data-component-container="true" style="position:relative; width:50%;" class="nike-cq-image">
+                                                            <div data-component-container="true" style="left:10%;position:relative; width:60%;" class="nike-cq-image">
                                                                 <div class="heatmap" style="width:70%;">
-                                                                    <img id="insole-overlay" style="position:relative; width:100%; overflow:hidden" src="images/insole.png">
+                                                                    <img id="insole-overlay" style="left:10%;position:relative; overflow:hidden" src="images/insole.png">
                                                                 </div>
                                                             </div>
                                                             <div data-component-container="true" class="nike-cq-container">
@@ -2603,9 +2601,9 @@
                                                                         <div class="nike-cq-labels-label-panel">
                                                                             <div class="nike-cq-subtitle">
                                                                                 <div class="nike-cq-subtitle-component nike-cq-touts-full-screen-tout-touts-labels-0-resource">
-                                                                                    <h2 class="nike-cq-subtitle-headline nike-cq-subtitle-headline-level-2 nike-cq-subtitle-styled-header"><span class="nike-cq-subtitle-line-1 nike-cq-title-line nike-cq-line1 nsg-text--black nike-cq-font50px nike-cq-nospacing nsg-font-family--platform">UNDER<br>
+                                                                                    <h2 class="nike-cq-subtitle-headline nike-cq-subtitle-headline-level-2 nike-cq-subtitle-styled-header"><span class="nike-cq-subtitle-line-1 nike-cq-title-line nike-cq-line1 nsg-text--black nike-cq-font60px nike-cq-nospacing nsg-font-family--platform" style="text-align:left;">UNDER.<br>
           
-          PRESSURE</span></h2>
+          PRESSURE.</span></h2>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -2615,7 +2613,6 @@
                                                                             <a class="nike-cq-labels-label-link" href="http://www.nike.com/us/en_us/c/nike-plus/apple-watch">
                                                                                 <div class="nike-cq-subtitle">
                                                                                     <div class="nike-cq-subtitle-component nike-cq-touts-full-screen-tout-touts-labels-1-resource">
-                                                                                        <h2 class="nike-cq-subtitle-headline nike-cq-subtitle-headline-level-2 nike-cq-subtitle-styled-header"><span class="nike-cq-subtitle-line-1 nike-cq-title-line nike-cq-line1 nsg-text--black nike-cq-font15px nike-cq-nospacing nsg-font-family--platform">LEARN MORE</span></h2>
                                                                                     </div>
                                                                                 </div>
                                                                             </a>
@@ -2626,7 +2623,6 @@
                                                                             <a class="nike-cq-labels-label-link" href="http://store.nike.com/us/en_us/pw/plus-accessories/of9">
                                                                                 <div class="nike-cq-subtitle">
                                                                                     <div class="nike-cq-subtitle-component nike-cq-touts-full-screen-tout-touts-labels-2-resource">
-                                                                                        <h2 class="nike-cq-subtitle-headline nike-cq-subtitle-headline-level-2 nike-cq-subtitle-styled-header"><span class="nike-cq-subtitle-line-1 nike-cq-title-line nike-cq-line1 nsg-text--black nike-cq-font15px nike-cq-nospacing nsg-font-family--platform">SHOP NOW</span></h2>
                                                                                     </div>
                                                                                 </div>
                                                                             </a>
@@ -2773,17 +2769,25 @@
     });
 
     // now generate some random data
+
+    container = document.querySelector('.heatmap');
+
+
+    containerWidth = container.offsetWidth;
+    containerHeight = container.offsetHeight;
+
+
     var points = [];
     var max = 0;
-    var width = 840;
-    var height = 400;
+    var width = containerWidth;
+    var height = containerHeight;
     var len = 200;
 
     while (len--) {
         var val = Math.floor(Math.random() * 100);
         max = Math.max(max, val);
         var point = {
-            x: Math.floor(Math.random() * width),
+            x: Math.floor((Math.random() * width) + containerWidth / 5),
             y: Math.floor(Math.random() * height),
             value: val
         };

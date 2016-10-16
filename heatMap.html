@@ -8,12 +8,213 @@
 <!--<![endif]-->
 
 <head>
-	<script blzsys="1" type="text/javascript">//<![CDATA[
-function BlzDynamicImageLoader(registeredPollAfterOnload,expectedImageSourceCheck,responsiveScreenWidths,responsiveCell2GMaxWidth,responsiveCell3GMaxWidth,responsiveCell4GMaxWidth,loadDeferral,visibilityBuffer,legacyIOSVisibilityBuffer,imageFormats,skipHidden){var registeredImages=[];var responsiveScreenWidthIndex=-1;var loadComplete=false;var registerHandler=function(element,event,handler){if(undefined!==element.addEventListener){element.addEventListener(event,handler,false);}else{if(undefined!==element.attachEvent){element.attachEvent("on"+event,handler);}}};var unregisterHandler=function(element,event,handler){if(undefined!==element.removeEventListener){element.removeEventListener(event,handler,false);}else{if(undefined!==element.detachEvent){element.detachEvent("on"+event,handler);}}};var getWindowHeight=function(){if(undefined!==self.innerHeight){return self.innerHeight;}else{if(undefined!==document.documentElement&&undefined!==document.documentElement.clientHeight){return document.documentElement.clientHeight;}else{if(undefined!==document.body){return document.body.clientHeight;}}}};var getVerticalScrollPosition=function(){if(undefined!==document.documentElement&&document.documentElement.scrollTop){return document.documentElement.scrollTop;}else{if(undefined!==document.body){return document.body.scrollTop;}}};var isHidden=function(element){return skipHidden&&(element.offsetWidth<=0||element.offsetHeight<=0);};var getVerticalPosition=function(element){if(!element){return 0;}var verticalPosition=element.offsetTop;var parent=element;while(parent=parent.offsetParent){verticalPosition+=parent.offsetTop;}return verticalPosition;};var shouldLoadNow=function(img){switch(loadDeferral){case"onLoad":if(loadComplete){return true;}case"onVisible":return !isHidden(img)&&(getVerticalPosition(img)-getVerticalScrollPosition()-visibilityBuffer)<=getWindowHeight();case"instant":default:return true;}};var determineScreenWidthIndex=function(){var checkConnection=undefined!==navigator.connection&&undefined!=navigator.connection.type;var check2g=checkConnection&&(navigator.connection.type===navigator.connection.CELL_2G)&&-1!==responsiveCell2GMaxWidth;var check3g=checkConnection&&(check2g||navigator.connection.type===navigator.connection.CELL_3G)&&-1!==responsiveCell3GMaxWidth;var check4g=checkConnection&&(check2g||check3g||navigator.connection.type===navigator.connection.CELL_4G)&&-1!==responsiveCell4GMaxWidth;for(responsiveScreenWidthIndex=0;responsiveScreenWidthIndex<responsiveScreenWidths.length;++responsiveScreenWidthIndex){var currentWidth=responsiveScreenWidths[responsiveScreenWidthIndex];if(check2g&&responsiveCell2GMaxWidth<=currentWidth){break;}if(check3g&&responsiveCell3GMaxWidth<=currentWidth){break;}if(check4g&&responsiveCell4GMaxWidth<=currentWidth){break;}if(window.screen.availWidth<=currentWidth){break;}}};var loadImage=function(img,force){if(!img){return;}if(expectedImageSourceCheck&&force!=true){var currentSrc=img.getAttribute("src",true);if(currentSrc==null){currentSrc="";}if(currentSrc!="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAQAICRAEAOw=="){return;}}var source;var finalImage;var responsiveFormats;if(img.getAttribute("data-blzlqsrc")){finalImage=false;source=img.getAttribute("data-blzlqsrc");responsiveFormats=img.getAttribute("data-blzlqmsi");img.removeAttribute("data-blzlqsrc");img.removeAttribute("data-blzlqmsi");}else{finalImage=true;source=img.getAttribute("data-blzsrc");responsiveFormats=img.getAttribute("data-blzmsi");img.removeAttribute("data-blzsrc");img.removeAttribute("data-blzmsi");}if(null!==responsiveFormats&&responsiveFormats.length>responsiveScreenWidthIndex){var srcDotIndex=source.lastIndexOf(".");if(srcDotIndex>-1){source=source.substring(0,srcDotIndex)+"-"+responsiveScreenWidths[responsiveScreenWidthIndex]+"."+imageFormats[responsiveFormats.charAt(responsiveScreenWidthIndex)];}}if(!finalImage){var nextImageLoadHandler=function(){unregisterHandler(img,"load",nextImageLoadHandler);if(loadComplete){loadImage(img,true);}else{var nextImageDeferredLoadHandler=function(){unregisterHandler(window,"load",nextImageDeferredLoadHandler);loadImage(img,true);};registerHandler(window,"load",nextImageDeferredLoadHandler);}};registerHandler(img,"load",nextImageLoadHandler);}img.setAttribute("src",source);};var loadDynamicImages=function(){var deferredImages=[];for(var imageIndex=0;imageIndex<registeredImages.length;++imageIndex){var img=registeredImages[imageIndex];if(shouldLoadNow(img)){loadImage(img);}else{deferredImages.push(img);}}registeredImages=deferredImages;if(("onVisible"===loadDeferral||"onLoad"===loadDeferral)&&(registeredImages.length==0&&loadComplete)){unregisterHandler(window,"resize",loadDynamicImages);unregisterHandler(window,"scroll",loadDynamicImages);}};var registerDynamicImages=function(){registeredImages=[];for(var registeredImageIndex=0;registeredImageIndex<document.images.length;++registeredImageIndex){var img=document.images[registeredImageIndex];if(img.getAttribute("data-blzsrc")){registeredImages.push(img);}}};var repeatedRegisterAndCheck=function(){if(registeredPollAfterOnload||!loadComplete){registerDynamicImages();loadDynamicImages();}if(!loadComplete){setTimeout(repeatedRegisterAndCheck,100);}else{if(registeredPollAfterOnload){setTimeout(repeatedRegisterAndCheck,500);}}};determineScreenWidthIndex();setTimeout(repeatedRegisterAndCheck,100);if("onVisible"===loadDeferral||"onLoad"===loadDeferral){registerHandler(window,"resize",loadDynamicImages);registerHandler(window,"scroll",loadDynamicImages);}registerHandler(window,"load",function(){loadComplete=true;registerDynamicImages();loadDynamicImages();});repeatedRegisterAndCheck();}
-//]]></script><script blzsys="1" type="text/javascript">var aFeoApplied=true;</script><script blzsys="1" type="text/javascript">//<![CDATA[
-BlzDynamicImageLoader(true,true,[128,240,320,480],-1,-1,-1,"onVisible",100,1000,["png","gif","jpg","webp","jxr","bmp","jp2"],true);
-//]]></script>
-  
+    <script blzsys="1" type="text/javascript">
+    //<![CDATA[
+    function BlzDynamicImageLoader(registeredPollAfterOnload, expectedImageSourceCheck, responsiveScreenWidths, responsiveCell2GMaxWidth, responsiveCell3GMaxWidth, responsiveCell4GMaxWidth, loadDeferral, visibilityBuffer, legacyIOSVisibilityBuffer, imageFormats, skipHidden) {
+        var registeredImages = [];
+        var responsiveScreenWidthIndex = -1;
+        var loadComplete = false;
+        var registerHandler = function(element, event, handler) {
+            if (undefined !== element.addEventListener) {
+                element.addEventListener(event, handler, false);
+            } else {
+                if (undefined !== element.attachEvent) {
+                    element.attachEvent("on" + event, handler);
+                }
+            }
+        };
+        var unregisterHandler = function(element, event, handler) {
+            if (undefined !== element.removeEventListener) {
+                element.removeEventListener(event, handler, false);
+            } else {
+                if (undefined !== element.detachEvent) {
+                    element.detachEvent("on" + event, handler);
+                }
+            }
+        };
+        var getWindowHeight = function() {
+            if (undefined !== self.innerHeight) {
+                return self.innerHeight;
+            } else {
+                if (undefined !== document.documentElement && undefined !== document.documentElement.clientHeight) {
+                    return document.documentElement.clientHeight;
+                } else {
+                    if (undefined !== document.body) {
+                        return document.body.clientHeight;
+                    }
+                }
+            }
+        };
+        var getVerticalScrollPosition = function() {
+            if (undefined !== document.documentElement && document.documentElement.scrollTop) {
+                return document.documentElement.scrollTop;
+            } else {
+                if (undefined !== document.body) {
+                    return document.body.scrollTop;
+                }
+            }
+        };
+        var isHidden = function(element) {
+            return skipHidden && (element.offsetWidth <= 0 || element.offsetHeight <= 0);
+        };
+        var getVerticalPosition = function(element) {
+            if (!element) {
+                return 0;
+            }
+            var verticalPosition = element.offsetTop;
+            var parent = element;
+            while (parent = parent.offsetParent) {
+                verticalPosition += parent.offsetTop;
+            }
+            return verticalPosition;
+        };
+        var shouldLoadNow = function(img) {
+            switch (loadDeferral) {
+                case "onLoad":
+                    if (loadComplete) {
+                        return true;
+                    }
+                case "onVisible":
+                    return !isHidden(img) && (getVerticalPosition(img) - getVerticalScrollPosition() - visibilityBuffer) <= getWindowHeight();
+                case "instant":
+                default:
+                    return true;
+            }
+        };
+        var determineScreenWidthIndex = function() {
+            var checkConnection = undefined !== navigator.connection && undefined != navigator.connection.type;
+            var check2g = checkConnection && (navigator.connection.type === navigator.connection.CELL_2G) && -1 !== responsiveCell2GMaxWidth;
+            var check3g = checkConnection && (check2g || navigator.connection.type === navigator.connection.CELL_3G) && -1 !== responsiveCell3GMaxWidth;
+            var check4g = checkConnection && (check2g || check3g || navigator.connection.type === navigator.connection.CELL_4G) && -1 !== responsiveCell4GMaxWidth;
+            for (responsiveScreenWidthIndex = 0; responsiveScreenWidthIndex < responsiveScreenWidths.length; ++responsiveScreenWidthIndex) {
+                var currentWidth = responsiveScreenWidths[responsiveScreenWidthIndex];
+                if (check2g && responsiveCell2GMaxWidth <= currentWidth) {
+                    break;
+                }
+                if (check3g && responsiveCell3GMaxWidth <= currentWidth) {
+                    break;
+                }
+                if (check4g && responsiveCell4GMaxWidth <= currentWidth) {
+                    break;
+                }
+                if (window.screen.availWidth <= currentWidth) {
+                    break;
+                }
+            }
+        };
+        var loadImage = function(img, force) {
+            if (!img) {
+                return;
+            }
+            if (expectedImageSourceCheck && force != true) {
+                var currentSrc = img.getAttribute("src", true);
+                if (currentSrc == null) {
+                    currentSrc = "";
+                }
+                if (currentSrc != "data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAQAICRAEAOw==") {
+                    return;
+                }
+            }
+            var source;
+            var finalImage;
+            var responsiveFormats;
+            if (img.getAttribute("data-blzlqsrc")) {
+                finalImage = false;
+                source = img.getAttribute("data-blzlqsrc");
+                responsiveFormats = img.getAttribute("data-blzlqmsi");
+                img.removeAttribute("data-blzlqsrc");
+                img.removeAttribute("data-blzlqmsi");
+            } else {
+                finalImage = true;
+                source = img.getAttribute("data-blzsrc");
+                responsiveFormats = img.getAttribute("data-blzmsi");
+                img.removeAttribute("data-blzsrc");
+                img.removeAttribute("data-blzmsi");
+            }
+            if (null !== responsiveFormats && responsiveFormats.length > responsiveScreenWidthIndex) {
+                var srcDotIndex = source.lastIndexOf(".");
+                if (srcDotIndex > -1) {
+                    source = source.substring(0, srcDotIndex) + "-" + responsiveScreenWidths[responsiveScreenWidthIndex] + "." + imageFormats[responsiveFormats.charAt(responsiveScreenWidthIndex)];
+                }
+            }
+            if (!finalImage) {
+                var nextImageLoadHandler = function() {
+                    unregisterHandler(img, "load", nextImageLoadHandler);
+                    if (loadComplete) {
+                        loadImage(img, true);
+                    } else {
+                        var nextImageDeferredLoadHandler = function() {
+                            unregisterHandler(window, "load", nextImageDeferredLoadHandler);
+                            loadImage(img, true);
+                        };
+                        registerHandler(window, "load", nextImageDeferredLoadHandler);
+                    }
+                };
+                registerHandler(img, "load", nextImageLoadHandler);
+            }
+            img.setAttribute("src", source);
+        };
+        var loadDynamicImages = function() {
+            var deferredImages = [];
+            for (var imageIndex = 0; imageIndex < registeredImages.length; ++imageIndex) {
+                var img = registeredImages[imageIndex];
+                if (shouldLoadNow(img)) {
+                    loadImage(img);
+                } else {
+                    deferredImages.push(img);
+                }
+            }
+            registeredImages = deferredImages;
+            if (("onVisible" === loadDeferral || "onLoad" === loadDeferral) && (registeredImages.length == 0 && loadComplete)) {
+                unregisterHandler(window, "resize", loadDynamicImages);
+                unregisterHandler(window, "scroll", loadDynamicImages);
+            }
+        };
+        var registerDynamicImages = function() {
+            registeredImages = [];
+            for (var registeredImageIndex = 0; registeredImageIndex < document.images.length; ++registeredImageIndex) {
+                var img = document.images[registeredImageIndex];
+                if (img.getAttribute("data-blzsrc")) {
+                    registeredImages.push(img);
+                }
+            }
+        };
+        var repeatedRegisterAndCheck = function() {
+            if (registeredPollAfterOnload || !loadComplete) {
+                registerDynamicImages();
+                loadDynamicImages();
+            }
+            if (!loadComplete) {
+                setTimeout(repeatedRegisterAndCheck, 100);
+            } else {
+                if (registeredPollAfterOnload) {
+                    setTimeout(repeatedRegisterAndCheck, 500);
+                }
+            }
+        };
+        determineScreenWidthIndex();
+        setTimeout(repeatedRegisterAndCheck, 100);
+        if ("onVisible" === loadDeferral || "onLoad" === loadDeferral) {
+            registerHandler(window, "resize", loadDynamicImages);
+            registerHandler(window, "scroll", loadDynamicImages);
+        }
+        registerHandler(window, "load", function() {
+            loadComplete = true;
+            registerDynamicImages();
+            loadDynamicImages();
+        });
+        repeatedRegisterAndCheck();
+    }
+    //]]>
+    </script>
+    <script blzsys="1" type="text/javascript">
+    var aFeoApplied = true;
+    </script>
+    <script blzsys="1" type="text/javascript">
+    //<![CDATA[
+    BlzDynamicImageLoader(true, true, [128, 240, 320, 480], -1, -1, -1, "onVisible", 100, 1000, ["png", "gif", "jpg", "webp", "jxr", "bmp", "jp2"], true);
+    //]]>
+    </script>
     <script type="text/javascript">
     (window.NREUM || (NREUM = {})).loader_config = {
         xpid: "VQYGVF5SCBAJVlFaAQIH"
@@ -982,11 +1183,9 @@ BlzDynamicImageLoader(true,true,[128,240,320,480],-1,-1,-1,"onVisible",100,1000,
     <script>
     window.nike.exp.script.device_detect.redirectOnAgentMismatch('false', 'http://m.nike.com/us/en_us/');
     </script>
-
-    <script src="scripts/heatmap.min.js"></script>
-
+    <script src="scripts/heatmap.js"></script>
     <title>Scare Jordan</title>
-    <link rel="shortcut icon" href="images/favicon.ico"/>
+    <link rel="shortcut icon" href="images/favicon.ico" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="index,follow" />
@@ -2172,11 +2371,11 @@ BlzDynamicImageLoader(true,true,[128,240,320,480],-1,-1,-1,"onVisible",100,1000,
                                 <span class="product-giftcard">Give a gift that fits everyone.</span>
                             </div>
                             <span class="non-giftcard-data size-container">
-    							          <span class="property">Size:</span>
+                                          <span class="property">Size:</span>
                             <span class="size-value"></span>
                             </span>
                             <span class="non-giftcard-data qty-container">
-    			            	    <span class="property">Qty:</span>
+                                    <span class="property">Qty:</span>
                             <span class="quantity-value"></span>
                             <span class="quanity-price-symbol">@ </span>
                             <span class="quantity-price-value price nsg-font-family--base edf-font-size--regular nsg-text--nike-orange"></span>
@@ -2388,47 +2587,50 @@ BlzDynamicImageLoader(true,true,[128,240,320,480],-1,-1,-1,"onVisible",100,1000,
                                                     <div class="nike-cq-fst-component" data-background-color="FFFFFF">
                                                         <div class="nike-cq-background-component" style="background-color:#FFFFFF;"></div>
                                                         <div class="nike-cq-fst-background-image">
-                                                            <div data-component-container="true" class="nike-cq-image"><div class="heatmap" style="height:400px">
+                                                            <div data-component-container="true" style="position:relative; width:50%;" class="nike-cq-image">
+                                                                <div class="heatmap" style="width:70%;">
+                                                                    <img id="insole-overlay" style="position:relative; width:100%; overflow:hidden" src="images/insole.png">
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div data-component-container="true" class="nike-cq-container">
-                                                            <div class="nike-cq-block-container-component nike-cq-touts-full-screen-tout-touts-blocks-resource">
-                                                                <div data-component-container="true" data-nike-cq-component-name="nike-cq-full-screen-block" class="nike-cq-block"></div>
+                                                            <div data-component-container="true" class="nike-cq-container">
+                                                                <div class="nike-cq-block-container-component nike-cq-touts-full-screen-tout-touts-blocks-resource">
+                                                                    <div data-component-container="true" data-nike-cq-component-name="nike-cq-full-screen-block" class="nike-cq-block"></div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div data-component-module="true" data-component-container="true" class="nike-cq-labels">
-                                                            <div class="nike-cq-labels-component nike-cq-touts-full-screen-tout-touts-labels-resource nike-cq-dynamic-layout">
-                                                                <div class="nike-cq-labels-label nike-cq-labels-label-alignment-center" id="label0" data-label-x="775" data-label-y="160" data-label-link="" data-label-title="" data-label-justification="center" style="left: 86.11111111111111%; top: 43.746364165212334%;">
-                                                                    <div class="nike-cq-labels-label-panel">
-                                                                        <div class="nike-cq-subtitle">
-                                                                            <div class="nike-cq-subtitle-component nike-cq-touts-full-screen-tout-touts-labels-0-resource">
-                                                                                <h2 class="nike-cq-subtitle-headline nike-cq-subtitle-headline-level-2 nike-cq-subtitle-styled-header"><span class="nike-cq-subtitle-line-1 nike-cq-title-line nike-cq-line1 nsg-text--black nike-cq-font50px nike-cq-nospacing nsg-font-family--platform">UNDER<br>
+                                                            <div data-component-module="true" data-component-container="true" class="nike-cq-labels">
+                                                                <div class="nike-cq-labels-component nike-cq-touts-full-screen-tout-touts-labels-resource nike-cq-dynamic-layout">
+                                                                    <div class="nike-cq-labels-label nike-cq-labels-label-alignment-center" id="label0" data-label-x="775" data-label-y="160" data-label-link="" data-label-title="" data-label-justification="center" style="left: 86.11111111111111%; top: 43.746364165212334%;">
+                                                                        <div class="nike-cq-labels-label-panel">
+                                                                            <div class="nike-cq-subtitle">
+                                                                                <div class="nike-cq-subtitle-component nike-cq-touts-full-screen-tout-touts-labels-0-resource">
+                                                                                    <h2 class="nike-cq-subtitle-headline nike-cq-subtitle-headline-level-2 nike-cq-subtitle-styled-header"><span class="nike-cq-subtitle-line-1 nike-cq-title-line nike-cq-line1 nsg-text--black nike-cq-font50px nike-cq-nospacing nsg-font-family--platform">UNDER<br>
           
           PRESSURE</span></h2>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="nike-cq-labels-label nike-cq-labels-label-alignment-center" id="label1" data-label-x="805" data-label-y="233" data-label-link="http://www.nike.com/us/en_us/c/nike-plus/apple-watch" data-label-title="" data-label-justification="center" style="left: 89.44444444444444%; top: 63.705642815590465%;">
-                                                                    <div class="nike-cq-labels-label-panel">
-                                                                        <a class="nike-cq-labels-label-link" href="http://www.nike.com/us/en_us/c/nike-plus/apple-watch">
-                                                                            <div class="nike-cq-subtitle">
-                                                                                <div class="nike-cq-subtitle-component nike-cq-touts-full-screen-tout-touts-labels-1-resource">
-                                                                                    <h2 class="nike-cq-subtitle-headline nike-cq-subtitle-headline-level-2 nike-cq-subtitle-styled-header"><span class="nike-cq-subtitle-line-1 nike-cq-title-line nike-cq-line1 nsg-text--black nike-cq-font15px nike-cq-nospacing nsg-font-family--platform">LEARN MORE</span></h2>
+                                                                    <div class="nike-cq-labels-label nike-cq-labels-label-alignment-center" id="label1" data-label-x="805" data-label-y="233" data-label-link="http://www.nike.com/us/en_us/c/nike-plus/apple-watch" data-label-title="" data-label-justification="center" style="left: 89.44444444444444%; top: 63.705642815590465%;">
+                                                                        <div class="nike-cq-labels-label-panel">
+                                                                            <a class="nike-cq-labels-label-link" href="http://www.nike.com/us/en_us/c/nike-plus/apple-watch">
+                                                                                <div class="nike-cq-subtitle">
+                                                                                    <div class="nike-cq-subtitle-component nike-cq-touts-full-screen-tout-touts-labels-1-resource">
+                                                                                        <h2 class="nike-cq-subtitle-headline nike-cq-subtitle-headline-level-2 nike-cq-subtitle-styled-header"><span class="nike-cq-subtitle-line-1 nike-cq-title-line nike-cq-line1 nsg-text--black nike-cq-font15px nike-cq-nospacing nsg-font-family--platform">LEARN MORE</span></h2>
+                                                                                    </div>
                                                                                 </div>
-                                                                            </div>
-                                                                        </a>
+                                                                            </a>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="nike-cq-labels-label nike-cq-labels-label-alignment-center" id="label2" data-label-x="745" data-label-y="233" data-label-link="http://store.nike.com/us/en_us/pw/plus-accessories/of9" data-label-title="" data-label-justification="center" style="left: 82.77777777777779%; top: 63.705642815590465%;">
-                                                                    <div class="nike-cq-labels-label-panel">
-                                                                        <a class="nike-cq-labels-label-link" href="http://store.nike.com/us/en_us/pw/plus-accessories/of9">
-                                                                            <div class="nike-cq-subtitle">
-                                                                                <div class="nike-cq-subtitle-component nike-cq-touts-full-screen-tout-touts-labels-2-resource">
-                                                                                    <h2 class="nike-cq-subtitle-headline nike-cq-subtitle-headline-level-2 nike-cq-subtitle-styled-header"><span class="nike-cq-subtitle-line-1 nike-cq-title-line nike-cq-line1 nsg-text--black nike-cq-font15px nike-cq-nospacing nsg-font-family--platform">SHOP NOW</span></h2>
+                                                                    <div class="nike-cq-labels-label nike-cq-labels-label-alignment-center" id="label2" data-label-x="745" data-label-y="233" data-label-link="http://store.nike.com/us/en_us/pw/plus-accessories/of9" data-label-title="" data-label-justification="center" style="left: 82.77777777777779%; top: 63.705642815590465%;">
+                                                                        <div class="nike-cq-labels-label-panel">
+                                                                            <a class="nike-cq-labels-label-link" href="http://store.nike.com/us/en_us/pw/plus-accessories/of9">
+                                                                                <div class="nike-cq-subtitle">
+                                                                                    <div class="nike-cq-subtitle-component nike-cq-touts-full-screen-tout-touts-labels-2-resource">
+                                                                                        <h2 class="nike-cq-subtitle-headline nike-cq-subtitle-headline-level-2 nike-cq-subtitle-styled-header"><span class="nike-cq-subtitle-line-1 nike-cq-title-line nike-cq-line1 nsg-text--black nike-cq-font15px nike-cq-nospacing nsg-font-family--platform">SHOP NOW</span></h2>
+                                                                                    </div>
                                                                                 </div>
-                                                                            </div>
-                                                                        </a>
+                                                                            </a>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -2436,23 +2638,22 @@ BlzDynamicImageLoader(true,true,[128,240,320,480],-1,-1,-1,"onVisible",100,1000,
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div data-component-container="true" class="nike-cq-container">
+                                                <div class="nike-cq-attachments-component nike-cq-optional-full_screen-attachments-resource"></div>
+                                            </div>
                                         </div>
-                                        <div data-component-container="true" class="nike-cq-container">
-                                            <div class="nike-cq-attachments-component nike-cq-optional-full_screen-attachments-resource"></div>
-                                        </div>
-                                    </div>
                                 </section>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="mini-pdp-wrapper">
-                    <div data-module="nike.exp.pdp.desktop.MiniPdpShell" data-id="miniPdpShell">
+                    <div class="mini-pdp-wrapper">
+                        <div data-module="nike.exp.pdp.desktop.MiniPdpShell" data-id="miniPdpShell">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <div data-gadget="nike.gadget.OneNikeFooter" data-load="preloaded">
         <footer>
@@ -2561,39 +2762,41 @@ BlzDynamicImageLoader(true,true,[128,240,320,480],-1,-1,-1,"onVisible",100,1000,
         "queueTime": 0
     }
     </script>
-
     <script type="text/javascript">
+    //ZACH THIS IS THE HEATMAP CODE
+
+
     // minimal heatmap instance configuration
-var heatmapInstance = h337.create({
-  // only container is required, the rest will be defaults
-  container: document.querySelector('.heatmap')
-});
+    var heatmapInstance = h337.create({
+        // only container is required, the rest will be defaults
+        container: document.querySelector('.heatmap')
+    });
 
-// now generate some random data
-var points = [];
-var max = 0;
-var width = 840;
-var height = 400;
-var len = 200;
+    // now generate some random data
+    var points = [];
+    var max = 0;
+    var width = 840;
+    var height = 400;
+    var len = 200;
 
-while (len--) {
-  var val = Math.floor(Math.random()*100);
-  max = Math.max(max, val);
-  var point = {
-    x: Math.floor(Math.random()*width),
-    y: Math.floor(Math.random()*height),
-    value: val
-  };
-  points.push(point);
-}
-// heatmap data format
-var data = { 
-  max: max, 
-  data: points 
-};
-// if you have a set of datapoints always use setData instead of addData
-// for data initialization
-heatmapInstance.setData(data);
+    while (len--) {
+        var val = Math.floor(Math.random() * 100);
+        max = Math.max(max, val);
+        var point = {
+            x: Math.floor(Math.random() * width),
+            y: Math.floor(Math.random() * height),
+            value: val
+        };
+        points.push(point);
+    }
+    // heatmap data format
+    var data = {
+        max: max,
+        data: points
+    };
+    // if you have a set of datapoints always use setData instead of addData
+    // for data initialization
+    heatmapInstance.setData(data);
     </script>
 </body>
 
